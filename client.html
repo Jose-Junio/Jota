@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Primeiro Jogo Multiplayer</title>
+
+    <style>
+        #screen{
+            border: 10px solid #CCC;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+
+</head>
+<body>
+    <canvas id="screen" height="10px" width="10px"></canvas>
+
+    <script>
+    const screen = document.getElementById('screen')
+    const context = screen.getContext('2d')
+
+    const game = {
+        players:{
+            'player1': {x:1, y:1},
+            'player2': {x:9, y:9}
+        },
+        fruits:{
+            'fruit1': {x:2, y:1}
+        }
+    }
+
+    render()
+    
+    function render(){
+        context.fillStyle = 'white'
+        context.fillRect(0,0,10,10)
+
+        for(playerid in game.players){
+            const player = game.players[playerid]
+            context.fillStyle = 'black'
+            context.fillRect(player.x, player.y, 1,1)
+        }
+        for(fruitid in game.fruits){
+            const fruit = game.fruits[fruitid]
+            context.fillStyle = 'green'
+            context.fillRect(fruit.x, fruit.y, 1,1)
+        }
+
+        requestAnimationFrame(render)
+    }
+
+
+    </script>
+</body>
+</html>
